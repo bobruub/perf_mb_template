@@ -32,7 +32,7 @@ Example Stub Configuration **imposters.ejs**
   "recordRequests": true,
   "name": "**-- VSE -- 2525 --**",
   "stubs": [
-      <% include template//imposters.ejs %>
+      <% include template//template_control.ejs %>
    ]
 }
 ```
