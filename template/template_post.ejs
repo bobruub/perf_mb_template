@@ -1,0 +1,35 @@
+function (request, state, logger) {
+logger.info('Received a Post Test Request.');
+
+// include uuid plugin
+var uuid = require('uuid');
+
+// current date and time
+var currentDate = new Date().getTime();
+
+// extract username and password from request body
+var requestJson = JSON.parse(request.body);
+var userName = requestJson.username;
+var passWord = requestJson.username;
+logger.info("userName:" + userName);
+
+// generate a guid
+var X_Unique_Id = uuid.v1();
+
+// build the response
+var response = '{';
+var response = response + '"userToken": "' + X_Unique_Id + '",';
+var response = response + '"userName": "' + userName;
+var response = response + '"}';
+
+	return {
+		headers: {
+				'Content-Type': 'application/json; charset=UTF-8',
+				'Connection': 'Keep-Alive',
+				'Access-Control-Allow-Origin': '*',
+				'Content-Length': '0'
+			},
+			body: response
+			};
+
+}

@@ -1,0 +1,12 @@
+function (request, state, logger) {
+logger.info('Received a DEFAULT Request.');
+
+	return {
+		statusCode: 404,
+		headers: {
+				'Connection': 'Keep-Alive'
+			},
+			body: "404 Not Found.."
+			};
+
+}

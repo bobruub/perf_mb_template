@@ -1,0 +1,76 @@
+<%# -------------------------------------------------------------------- %>
+<%# ShowME Page for connectivity debugging                               %>
+<%# URL('http://127.0.0.1:2525/showme 																	 %>
+<%# -------------------------------------------------------------------- %>
+	{
+	  "responses": [{
+	  "inject": "<%- stringify(filename, 'template//showme.ejs') %>",
+	  "_behaviors": {
+			"wait": "function() { return Math.floor(Math.random() * 25) + 50; }"
+			}
+	  }],
+	  "predicates":
+	  [
+			{
+				"contains": { "path": "showme" }
+
+			}
+		]
+	},
+
+	<%# -------------------------------------------------------------------- %>
+	<%# Get get_test													                               %>
+	<%# http://127.0.0.1:2525/get_test?firstname=FirstName&lastName=LastName&dateOfBirth=01/01/1980&email=email@gmail.com %>
+	<%# -------------------------------------------------------------------- %>
+	{
+		"responses": [{
+		"inject": "<%- stringify(filename, 'template//template_get.ejs') %>",
+		"_behaviors": {
+			"wait": "function() { return Math.floor(Math.random() * 100) + 300; }"
+			}
+		}],
+		"predicates":
+		[
+			{
+				"contains": { "path": "get_test" }
+
+			}
+		]
+	},
+	<%# -------------------------------------------------------------------- %>
+	<%# Get post_test													                               %>
+	<%# http://127.0.0.1:2525/post_test					                             %>
+	<%# {username: 'templateUser',password:'Password01'}           					 %>
+	<%# -------------------------------------------------------------------- %>
+	{
+		"responses": [{
+		"inject": "<%- stringify(filename, 'template//template_post.ejs') %>",
+		"_behaviors": {
+			"wait": "function() { return Math.floor(Math.random() * 100) + 300; }"
+			}
+		}],
+		"predicates":
+		[
+			{
+				"contains": { "path": "post_test" }
+			}
+		]
+	},
+<%# -------------------------------------------------------------------- %>
+<%# Default no other match                                               %>
+<%# -------------------------------------------------------------------- %>
+	{
+	  "responses": [{
+	  "inject": "<%- stringify(filename, 'template//default.ejs') %>",
+	  	  "_behaviors": {
+			"wait": "function() { return Math.floor(Math.random() * 100) + 100; }"
+			}
+	  }],
+	  "predicates":
+	  [
+			{
+				"contains": { "path": "/" }
+			}
+		]
+
+	}

@@ -1,0 +1,25 @@
+function (request, state, logger) {
+logger.info('Received a Get Test Request.');
+
+// extract information from parameters
+var userName = request.query.firstname;
+var lastName = request.query.lastName;
+var dateOfBirth = request.query.dateOfBirth;
+var email = request.query.email;
+
+// build the response
+var response = '{';
+var response = response + '"userName": "' + userName + '",';
+var response = response + '"dateOfBirth": "' + dateOfBirth + '",';
+var response = response + '"message": "user get name OK"';
+var response = response + '}';
+
+return {
+	headers: {
+			'Content-Type': 'application/json; charset=UTF-8',
+			'Connection': 'Keep-Alive',
+			'Content-Length': '0'
+		},
+		body: response
+		};
+}
